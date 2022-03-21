@@ -35,10 +35,21 @@ def get_board():
             'task-2': {'id': 'task-2', 'content': 'buy some milk'},
             'task-3': {'id': 'task-3', 'content': 'come back home'},
         },
-        'column': {},
-        'columnOrder': [],
+        'column': {
+            'column-1': {
+                'id': 'column-1',
+                'title': 'To do',
+                'taskIds': ['task-2', 'task-3']
+            },
+            'column-2': {
+                'id': 'column-2',
+                'title': 'Done',
+                'taskIds': ['task-1', ]
+            },
+        },
+        'columnOrder': ['column-1', 'column-2'],
     }
-    return {'board': {}}
+    return {'board': board_data}
 
 
 if __name__ == '__main__':
