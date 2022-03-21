@@ -16,6 +16,16 @@ JWT_SECRET = 'myjwtsecret'
 
 app = FastAPI()
 
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=origins,
+    allow_headers=origins,
+)
+
 if __name__ == '__main__':
     uvicorn.run(app, port=8000, host='127.0.0.1')
 
