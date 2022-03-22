@@ -1,4 +1,5 @@
 import React from 'react';
+import Board from './components/Board';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <div></div>
       <div></div>
       <div></div>
+      <Board />
     </div>
   );
 }
