@@ -43,6 +43,7 @@ export default function Board() {
                 />
               );
             })}
+            {provided.placeholder}
           </Container>
         )}
       </Droppable>
