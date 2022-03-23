@@ -12,6 +12,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding-bottom: 10px;
+  background: white;
 `;
 const Title = styled.h3`
   padding: 8px;
@@ -24,8 +25,9 @@ export default function Column(props) {
   return (
     <Draggable draggableId={props.column.id} index={props.index}>
       {provided => (
-        <Container {...provided.droppableProps} ref={provided.innerRef}>
+        <Container {...provided.draggableProps} ref={provided.innerRef}>
           <Title {...provided.dragHandleProps}>{props.column.title}</Title>
+          <p> {props.column.id}</p>
           <TaskList>
             {props.tasks.map((task, index) => (
               <Task
