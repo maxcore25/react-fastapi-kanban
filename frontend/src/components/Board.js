@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Column from './Column';
 
 const Container = styled.div`
   display: flex;
@@ -22,8 +23,13 @@ export default function Board() {
 
   return (
     <Container>
-      Board
-      <div></div>
+      {board.columnOrder.map((columnId, index) => {
+        const column = board.columns[columnId];
+        const tasks = column.tasksId.map(tasksId => board.tasks[tasksId]);
+        return (
+          <Column key={column.id} column={column} tasks={tasks} index={index} />
+        );
+      })}
     </Container>
   );
 }

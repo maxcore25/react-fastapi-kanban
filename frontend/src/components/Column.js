@@ -18,10 +18,10 @@ const TaskList = styled.div`
   padding: 8px;
 `;
 
-export default function Column() {
+export default function Column(props) {
   return (
     <Container>
-      <Title>hello</Title>
+      <Title>{props.column.title}</Title>
     </Container>
   );
 }
