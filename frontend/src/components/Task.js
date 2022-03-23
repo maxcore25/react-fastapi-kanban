@@ -11,5 +11,5 @@ const Container = styled.div`
 `;
 
 export default function Task(props) {
-  return <div>Task</div>;
+  return <Container>{props.task.content}</Container>;
 }
