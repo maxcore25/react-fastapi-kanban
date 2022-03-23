@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import Column from './Column';
 
@@ -21,15 +22,30 @@ export default function Board() {
     return data.board;
   }
 
+  function onDragEnd() {
+    alert('drag');
+  }
+
   return (
-    <Container>
-      {board.columnOrder.map((columnId, index) => {
-        const column = board.columns[columnId];
-        const tasks = column.taskIds.map(tasksId => board.tasks[tasksId]);
-        return (
-          <Column key={column.id} column={column} tasks={tasks} index={index} />
-        );
-      })}
-    </Container>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId='all-columns' direction='horizontal' type='column'>
+        {provided => (
+          <Container {...provided.droppableProps} ref={provided.innerRef}>
+            {board.columnOrder.map((columnId, index) => {
+              const column = board.columns[columnId];
+              const tasks = column.taskIds.map(tasksId => board.tasks[tasksId]);
+              return (
+                <Column
+                  key={column.id}
+                  column={column}
+                  tasks={tasks}
+                  index={index}
+                />
+              );
+            })}
+          </Container>
+        )}
+      </Droppable>
+    </DragDropContext>
   );
 }
