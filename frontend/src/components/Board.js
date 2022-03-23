@@ -22,8 +22,25 @@ export default function Board() {
     return data.board;
   }
 
-  function onDragEnd() {
-    alert('drag');
+  function onDragEnd(result) {
+    const { destination, source, draggableId, type } = result;
+
+    if (!destination) return;
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    )
+      return;
+
+    if (type === 'column') {
+      const newColumnOrder = Array.from(board.columnOrder);
+      newColumnOrder.splice(source.index, 1);
+      newColumnOrder.splice(destination.index, 0, draggableId);
+
+      setBoard({ ...board, columnOrder: newColumnOrder });
+      return;
+    }
   }
 
   return (
