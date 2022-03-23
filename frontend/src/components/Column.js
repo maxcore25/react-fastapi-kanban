@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Task from './Task';
 
 const Container = styled.div`
   margin: 8px;
@@ -22,6 +23,16 @@ export default function Column(props) {
   return (
     <Container>
       <Title>{props.column.title}</Title>
+      <TaskList>
+        {props.tasks.map((task, index) => (
+          <Task
+            key={task.id}
+            task={task}
+            index={index}
+            columnId={props.column.id}
+          />
+        ))}
+      </TaskList>
     </Container>
   );
 }
