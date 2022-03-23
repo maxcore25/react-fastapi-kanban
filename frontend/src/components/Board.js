@@ -25,7 +25,7 @@ export default function Board() {
     <Container>
       {board.columnOrder.map((columnId, index) => {
         const column = board.columns[columnId];
-        const tasks = column.tasksId.map(tasksId => board.tasks[tasksId]);
+        const tasks = column.taskIds.map(tasksId => board.tasks[tasksId]);
         return (
           <Column key={column.id} column={column} tasks={tasks} index={index} />
         );

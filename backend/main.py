@@ -35,7 +35,7 @@ def get_board():
             'task-2': {'id': 'task-2', 'content': 'buy some milk'},
             'task-3': {'id': 'task-3', 'content': 'come back home'},
         },
-        'column': {
+        'columns': {
             'column-1': {
                 'id': 'column-1',
                 'title': 'To do',
