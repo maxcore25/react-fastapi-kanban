@@ -41,6 +41,15 @@ export default function Board() {
       setBoard({ ...board, columnOrder: newColumnOrder });
       return;
     }
+
+    const start = board.columns[source.droppableId];
+    const finish = board.columns[destination.droppableId];
+
+    if (start === finish) {
+      const newTaskIds = Array.from(start.taskIds);
+      newTaskIds.splice(source.index, 1);
+      newTaskIds.splice(destination.index, 0, draggableId);
+    }
   }
 
   return (
