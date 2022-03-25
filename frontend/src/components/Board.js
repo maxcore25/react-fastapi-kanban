@@ -49,6 +49,18 @@ export default function Board() {
       const newTaskIds = Array.from(start.taskIds);
       newTaskIds.splice(source.index, 1);
       newTaskIds.splice(destination.index, 0, draggableId);
+
+      const newColumn = {
+        ...start,
+        taskIds: newTaskIds,
+      };
+
+      setBoard({
+        ...board,
+        columns: { ...board.columns, [newColumn.id]: newColumn },
+      });
+
+      return;
     }
   }
 
