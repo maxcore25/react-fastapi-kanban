@@ -62,6 +62,31 @@ export default function Board() {
 
       return;
     }
+
+    const startTaskIds = Array.from(start.taskIds);
+    startTaskIds.splice(source.index, 1);
+    const newStartColumn = {
+      ...start,
+      taskIds: startTaskIds,
+    };
+
+    const finishTaskIds = Array.from(finish.taskIds);
+    finishTaskIds.splice(destination.index, 0, draggableId);
+    const newFinishColumn = {
+      ...finish,
+      taskIds: finishTaskIds,
+    };
+
+    setBoard({
+      ...board,
+      columns: {
+        ...board.columns,
+        [newStartColumn.id]: newStartColumn,
+        [newFinishColumn.id]: newFinishColumn,
+      },
+    });
+
+    return;
   }
 
   return (
