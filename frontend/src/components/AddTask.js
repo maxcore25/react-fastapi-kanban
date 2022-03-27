@@ -4,7 +4,7 @@ export default function AddTask(props) {
   const [showNewTaskButton, setShowNewTaskButton] = useState(true);
   const [value, setValue] = useState('');
 
-  function handleInputComplete(e) {
+  function handleInputComplete() {
     setShowNewTaskButton(true);
     addNewTask(props.columnId, value);
     setValue('');
