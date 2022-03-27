@@ -4,15 +4,39 @@ export default function AddTask(props) {
   const [showNewTaskButton, setShowNewTaskButton] = useState(true);
   const [value, setValue] = useState('');
 
-  function handleInputChange(e) {
+  function handleInputComplete(e) {
     setShowNewTaskButton(true);
     addNewTask(props.columnId, value);
     setValue('');
   }
 
   function addNewTask(columnId, content) {
+    console.log(props.board);
+
     const newTaskId = 'task-' + Math.floor(Math.random() * 100000);
-    const column = props.board.column[columnId];
+    const column = props.board.columns[columnId];
+    const newTaskIds = Array.from(column.taskIds);
+    newTaskIds.push(newTaskId);
+
+    const newTask = {
+      id: newTaskId,
+      content,
+    };
+
+    props.setBoard({
+      ...props.board,
+      tasks: {
+        ...props.board.tasks,
+        [newTaskId]: newTask,
+      },
+      columns: {
+        ...props.board.columns,
+        [columnId]: {
+          ...props.board.columns[columnId],
+          taskIds: newTaskIds,
+        },
+      },
+    });
   }
 
   return (
@@ -24,7 +48,7 @@ export default function AddTask(props) {
           type='text'
           value={value}
           onChange={e => setValue(e.target.value)}
-          onBlur={handleInputChange}
+          onBlur={handleInputComplete}
         />
       )}
     </div>
