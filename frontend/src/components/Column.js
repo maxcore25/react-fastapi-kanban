@@ -41,9 +41,9 @@ export default function Column(props) {
                 ))}
                 {provided.placeholder}
                 <AddTask
+                  columnId={props.column.id}
                   board={props.board}
                   setBoard={props.setBoard}
-                  columnId={props.column.id}
                 />
               </TaskList>
             )}

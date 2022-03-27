@@ -103,6 +103,8 @@ export default function Board() {
                   column={column}
                   tasks={tasks}
                   index={index}
+                  board={board}
+                  setBoard={setBoard}
                 />
               );
             })}
