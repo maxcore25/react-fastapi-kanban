@@ -23,6 +23,10 @@ const TaskList = styled.div`
 `;
 
 export default function Column(props) {
+  function deleteColumn(columnId, index) {
+    const columnTasks = props.board.columns[columnId];
+  }
+
   return (
     <Draggable draggableId={props.column.id} index={props.index}>
       {provided => (
