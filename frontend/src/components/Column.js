@@ -24,7 +24,10 @@ const TaskList = styled.div`
 
 export default function Column(props) {
   function deleteColumn(columnId, index) {
-    const columnTasks = props.board.columns[columnId];
+    const columnTasks = props.board.columns[columnId].taskIds;
+    const finalTasks = columnTasks.reduce((previuosValue, currentValue) => {
+      const { [currentValue]: oldTask } = previuosValue;
+    }, props.board.tasks);
   }
 
   return (
