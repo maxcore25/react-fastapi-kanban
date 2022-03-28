@@ -23,15 +23,41 @@ const TaskList = styled.div`
 `;
 
 export default function Column(props) {
+  // function deleteColumn(columnId, index) {
+  //   const columnTasks = props.board.columns[columnId].taskIds;
+  //   const finalTasks = columnTasks.reduce((previuosValue, currentValue) => {
+  //     const { [currentValue]: oldTask, ...newTasks } = previuosValue;
+  //     return newTasks;
+  //   }, props.board.tasks);
+
+  //   const columns = props.board.columns;
+  //   const { [columnId]: columnId, ...newColumns } = columns;
+
+  //   const newColumnOrder = Array.from(props.board.columnOrder);
+  //   newColumnOrder.splice(index, 1);
+
+  //   props.setBoard({
+  //     tasks: {
+  //       ...finalTasks,
+  //     },
+  //     columns: {
+  //       ...newColumns,
+  //     },
+  //     columnOrder: newColumnOrder,
+  //   });
+  // }
+
   function deleteColumn(columnId, index) {
+    console.log(props.board);
     const columnTasks = props.board.columns[columnId].taskIds;
-    const finalTasks = columnTasks.reduce((previuosValue, currentValue) => {
-      const { [currentValue]: oldTask, ...newTasks } = previuosValue;
+
+    const finalTasks = columnTasks.reduce((previousValue, currentValue) => {
+      const { [currentValue]: oldTask, ...newTasks } = previousValue;
       return newTasks;
     }, props.board.tasks);
 
     const columns = props.board.columns;
-    const { [columnId]: columnId, ...newColumns } = columns;
+    const { [columnId]: oldColumn, ...newColumns } = columns;
 
     const newColumnOrder = Array.from(props.board.columnOrder);
     newColumnOrder.splice(index, 1);
@@ -55,7 +81,7 @@ export default function Column(props) {
             {props.column.title}
             <span onClick={() => deleteColumn(props.column.id, props.index)}>
               {' '}
-              x{' '}
+              [X]{' '}
             </span>
           </Title>
           <Droppable droppableId={props.column.id} type='task'>
