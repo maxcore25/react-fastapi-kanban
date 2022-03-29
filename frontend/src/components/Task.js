@@ -42,6 +42,13 @@ export default function Task(props) {
           {...provided.dragHandleProps}
           ref={provided.innerRef}>
           {props.task.content}
+          <span
+            onClick={() =>
+              deleteTask(props.column.id, props.index, props.task.id)
+            }>
+            {' '}
+            [X]
+          </span>
         </Container>
       )}
     </Draggable>
