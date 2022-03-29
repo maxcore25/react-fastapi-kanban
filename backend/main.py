@@ -42,6 +42,16 @@ class Board(BaseModel):
     columnOrder: list
 
 
+class User(Model):
+    id = fields.IntField(pk=True)
+    username = fields.CharField(50, unique=True)
+    password = fields.CharField(200)
+    board = fields.JSONField(default={'tasks': {}, 'columns': {}, 'columnOrder': []})
+
+
+User_Pydantic = pydantic_model_creator(User, name='User')
+UserIn_Pydantic = pydantic_model_creator(User, name='UserIn', exclude_readonly=True, exclude=('board',))
+
 origins = ["*"]
 
 app.add_middleware(
