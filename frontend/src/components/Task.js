@@ -12,11 +12,12 @@ const Container = styled.div`
 
 export default function Task(props) {
   function deleteTask(columnId, index, taskId) {
+    console.log(taskId);
     const column = props.board.columns[columnId];
     const newTaskIds = Array.from(column.taskIds);
     newTaskIds.splice(index, 1);
 
-    const tasks = props.state.tasks;
+    const tasks = props.board.tasks;
     const { [taskId]: oldTask, ...newTasks } = tasks;
 
     props.setBoard({
@@ -44,7 +45,8 @@ export default function Task(props) {
           {props.task.content}
           <span
             onClick={() =>
-              deleteTask(props.column.id, props.index, props.task.id)
+              // console.log(props.columnId, props.index, props.task.id)
+              deleteTask(props.columnId, props.index, props.task.id)
             }>
             {' '}
             [X]
