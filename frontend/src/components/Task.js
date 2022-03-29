@@ -11,6 +11,10 @@ const Container = styled.div`
 `;
 
 export default function Task(props) {
+  function deleteTask(columnId, index, taskId) {
+    const column = props.board.columns[columnId];
+  }
+
   return (
     <Draggable draggableId={props.task.id} index={props.index}>
       {provided => (
