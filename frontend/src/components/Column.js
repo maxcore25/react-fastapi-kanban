@@ -81,7 +81,7 @@ export default function Column(props) {
             {props.column.title}
             <span onClick={() => deleteColumn(props.column.id, props.index)}>
               {' '}
-              [X]{' '}
+              [X]
             </span>
           </Title>
           <Droppable droppableId={props.column.id} type='task'>
@@ -93,6 +93,8 @@ export default function Column(props) {
                     task={task}
                     index={index}
                     columnId={props.column.id}
+                    board={props.board}
+                    setBoard={props.setBoard}
                   />
                 ))}
                 {provided.placeholder}
