@@ -88,6 +88,14 @@ def get_board():
     return {'board': board_data}
 
 
+register_tortoise(
+    app,
+    db_url='postgres://postgres:Password1@localhost:5432/postgres',
+    modules={'models': ['main']},
+    generate_schemas=True,
+    add_exception_handlers=True
+)
+
 if __name__ == '__main__':
     uvicorn.run(app, port=8000, host='127.0.0.1')
 
